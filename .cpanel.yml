@@ -1,9 +1,7 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/bhadrikaismy/public_html/web.bhadrikais.my.id_git
-    - /bin/cp index.html $DEPLOYPATH
-    - /bin/cp style.css $DEPLOYPATH
+    - export DEPLOYPATH=/home/bhadrikaismy/public_html/blogs
     - /bin/cp -R app $DEPLOYPATH
     - /bin/cp -R dist $DEPLOYPATH
     - /bin/cp -R public $DEPLOYPATH
