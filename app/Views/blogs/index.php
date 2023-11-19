@@ -15,7 +15,7 @@
                 <?php foreach ($blogs as $blog) : ?>
                     <figure class="relative transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0 shadow-md mb-3 ">
                         <a href="<?= base_url('/blogs/' . $blog['slug']); ?>">
-                            <img class="rounded-lg aspect-[16/9] object-cover h-full" src="<?= base_url('/img/' . $blog['gambar']); ?>" alt="image description">
+                            <img class="rounded-lg aspect-[16/9] object-cover h-full" src="<?= base_url('/img/cover/' . $blog['gambar']); ?>" alt="image description">
                             <!-- <img class="rounded-lg aspect-[16/9] object-cover h-full" src="<?= $blog['gambar']; ?>" alt="image description"> -->
                         </a>
                         <figcaption class="absolute px-4 text-base text-white bottom-6 font-bold">

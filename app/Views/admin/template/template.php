@@ -7,6 +7,7 @@
     <link href="<?= base_url('css/app.css'); ?>" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
     <title><?= $tittle; ?> | Bhadrika.</title>
+    <link rel="icon" type="image/png" href="<?= base_url('img/assets/favicon.png'); ?>">
 </head>
 
 <body class="dark:bg-zinc-900 dark:text-white">

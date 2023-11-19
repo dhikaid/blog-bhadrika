@@ -4,10 +4,27 @@ namespace App\Controllers;
 
 class Pages extends BaseController
 {
+    protected $usersModel;
+    protected $userLogin;
+
+
+    public function __construct()
+    {
+
+        $this->usersModel = new \App\Models\UsersModel();
+
+        // user
+        if (session()->get("isLoggedIn")) {
+            $this->userLogin = $this->usersModel->getUserByUuid(session()->get('uuid'));
+        } else {
+            $this->userLogin = false;
+        }
+    }
     public function index()
     {
         $data = [
             'tittle' => 'Home',
+            'user' => $this->userLogin
         ];
         return view('pages/home', $data);
     }
@@ -17,7 +34,7 @@ class Pages extends BaseController
         $data = [
             'tittle' => 'Blog',
             'activeTabs' => 'blog',
-
+            'user' => $this->userLogin
         ];
         return view('pages/blog', $data);
     }
@@ -27,7 +44,7 @@ class Pages extends BaseController
         $data = [
             'tittle' => 'About Me',
             'activeTabs' => 'about',
-
+            'user' => $this->userLogin
         ];
         return view('pages/about', $data);
     }
@@ -48,7 +65,8 @@ class Pages extends BaseController
                     'alamat' => 'jl. dbc no 123',
                     'kota' => 'Bandung',
                 ]
-            ]
+            ],
+            'user' => $this->userLogin
         ];
 
         return view('pages/contact', $data);

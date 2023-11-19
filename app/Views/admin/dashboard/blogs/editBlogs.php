@@ -42,18 +42,34 @@
                 <label for="penulis" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Penulis</label>
                 <input type="hidden" id="penulis" name="penulis" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required value="<?= old('penulis', $blog['penulis']); ?>">
             </div>
+
             <div class="mb-6 ">
                 <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Text</label>
+
                 <div class="text-editor-js bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <input id="x" type="hidden" name="text" required value="<?= old('text', $blog['text']); ?>">
-                    <trix-editor input="x" class="trix-content text-justify bg-zinc-900 list-decimal list-disc"></trix-editor>
+                    <article class=" max-w-full prose prose-sm ">
+                        <!-- <textarea type="hidden" name="text" class="dark:text-black" required><?= $blog['text']; ?></textarea> -->
+                        <textarea id="editor" name="text" class=""><?= $blog['text']; ?></textarea>
+                        <!-- <trix-editor input="x" class="trix-content text-justify bg-zinc-900 list-decimal list-disc"><?= $blog['text']; ?></trix-editor> -->
+                    </article>
                 </div>
+
             </div>
             <button type="submit" class="text-white font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center   bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">Edit</button>
         </form>
 
     </div>
 </div>
+
+
+
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor'))
+        .catch(error => {
+            console.error(error);
+        });
+</script>
 
 
 <script src="<?= base_url('js/text-editor.js'); ?>"></script>

@@ -9,6 +9,7 @@ class Blogs extends BaseController
     protected $usersModel;
     protected $blogsModel;
     protected $commentsModel;
+    protected $userLogin;
     protected $errorMessage = null;
 
     public function __construct()
@@ -19,6 +20,12 @@ class Blogs extends BaseController
         $this->usersModel = new \App\Models\UsersModel();
         $this->commentsModel = new \App\Models\CommentsModel();
 
+        // user
+        if (session()->get("isLoggedIn")) {
+            $this->userLogin = $this->usersModel->getUserByUuid(session()->get('uuid'));
+        } else {
+            $this->userLogin = false;
+        }
         // text
         helper('text');
     }
@@ -37,15 +44,17 @@ class Blogs extends BaseController
         }
         // dd(count($blogs->paginate(6, 'blogs')));
 
+
+
         $data = [
             'tittle' => 'Blog',
             'activeTabs' => 'blog',
             'blogs' => $blogs->paginate(6, 'blogs'),
             'pager' => $this->blogsModel->pager,
-
+            'user' => $this->userLogin,
         ];
 
-
+        // dd($user);
         return view('blogs/index', $data);
     }
 
@@ -78,6 +87,7 @@ class Blogs extends BaseController
             'activeTabs' => 'blog',
             'validation' => session()->getFlashdata('validation'),
             'comments' => $comment,
+            'user' => $this->userLogin,
         ];
 
         // jika tidak ada komik
@@ -246,7 +256,7 @@ class Blogs extends BaseController
         return redirect()->to(base_url() . 'blogs');
     }
 
-    public function comments($slug)
+    public function comments($slug, $replyto = null)
     {
         helper('form');
         if (!$this->validate([
@@ -268,10 +278,18 @@ class Blogs extends BaseController
 
         $blog = $this->blogsModel->getBlogs($slug);
 
+        if ($replyto === null) {
+            $replyto = "0";
+        } else {
+            $replyto = $replyto;
+        }
+
         $this->commentsModel->save([
             "comments" => esc($this->request->getVar("comment")),
             "userid" => session()->get('uuid'),
-            "blogid" => $blog['id']
+            "blogid" => $blog['id'],
+            "replyto" => $replyto,
+            "hashid" => hash('sha256', $blog['id'] . $this->request->getVar("comment"))
         ]);
 
         return redirect()->to(base_url('blogs/' . $slug));

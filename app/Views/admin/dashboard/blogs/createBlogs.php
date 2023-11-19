@@ -40,12 +40,18 @@
                         <p id="outlined_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400"><span class="font-medium font-bold">Gagal!</span> <?= $validation['judul']; ?></p>
                     <?php endif; ?>
                 </div>
+
                 <div class="mb-6 ">
                     <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Text</label>
+
                     <div class="text-editor-js bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <input id="x" type="hidden" name="text" required value="<?= old('text'); ?>">
-                        <trix-editor input="x" class="trix-content text-justify bg-zinc-900 list-decimal list-disc"></trix-editor>
+                        <article class=" max-w-full prose prose-sm ">
+
+                            <textarea id="editor" name="text" class=""><?= old('text'); ?></textarea>
+
+                        </article>
                     </div>
+
                 </div>
 
 
@@ -56,6 +62,12 @@
     </section>
 
 </div>
-
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor'))
+        .catch(error => {
+            console.error(error);
+        });
+</script>
 <script src="<?= base_url('js/text-editor.js'); ?>"></script>
 <?= $this->endSection(); ?>

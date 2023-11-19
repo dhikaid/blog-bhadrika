@@ -49,12 +49,12 @@
                 <?php endif; ?>
             </div>
             <div class="flex items-start">
-                <div class="flex items-start">
+                <!-- <div class="flex items-start">
                     <div class="flex items-center h-5">
                         <input id="remember" type="checkbox" value="" class="w-4 h-4 border border-zinc-300 rounded bg-zinc-50 focus:ring-3 focus:ring-blue-300 dark:bg-zinc-700 dark:border-zinc-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" />
                     </div>
                     <label for="remember" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remember me</label>
-                </div>
+                </div> -->
                 <!-- <a
               href="#"
               class="ml-auto text-sm text-blue-700 hover:underline dark:text-blue-500"

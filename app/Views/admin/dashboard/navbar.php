@@ -9,7 +9,7 @@
                     </svg>
                 </button>
                 <a href="<?= base_url('/dashboard'); ?>" class="flex ml-2 md:mr-24">
-                    <img src="https://web.bhadrikais.my.id/img/favicon.png" class="h-8 mr-3" alt="FlowBite Logo" />
+                    <img src="<?= base_url('img/assets/favicon.png'); ?>" class="h-8 mr-3" alt="Dhika Logo" />
                     <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Bhadrika.</span>
                 </a>
             </div>

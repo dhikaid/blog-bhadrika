@@ -43,7 +43,7 @@ class Users extends BaseController
                 ]
             ],
             'username' => [
-                'rules' => 'required|trim',
+                'rules' => 'trim|required|min_length[5]|max_length[12]|alpha_numeric',
                 'errors' => [
                     'required' => '{field} harus diisi',
                 ]
@@ -106,10 +106,13 @@ class Users extends BaseController
             $password = $users['password'];
         }
 
+        $username = $this->request->getVar('username');
+        $username = str_replace(' ', '_', $username);
+
         $this->usersModel->save([
             'id' => $users['id'],
             'uuid' => $users['uuid'],
-            'username' => esc($this->request->getVar('username')),
+            'username' => esc($username),
             'email' => esc($this->request->getVar('email')),
             'fullname' => esc($this->request->getVar('fullname')),
             'password' => $password,

@@ -35,7 +35,7 @@
       About Me
     </h2>
     <div class="mt-5 md:flex md:gap-4 md:justify-center md:items-center">
-      <img src="https://web.bhadrikais.my.id/img/about.jpg" class="rounded-lg h-44" alt="" />
+      <img src="https://raw.githubusercontent.com/dhikaid/itw2022_project1_223040018/main/img/about.jpg" class="rounded-lg h-44" alt="" />
       <div class="">
         <p class="font-semibold mt-2 leading-relaxed">Halo 👋</p>
         <p class="leading-loose">

@@ -12,7 +12,14 @@ module.exports = {
       fontFamily: {
         poppins: ["Poppins"],
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            maxWidth: "100ch", // add required value here
+          },
+        },
+      },
     },
   },
-  plugins: [require("flowbite/plugin")],
+  plugins: [require("flowbite/plugin"), require("@tailwindcss/typography")],
 };
