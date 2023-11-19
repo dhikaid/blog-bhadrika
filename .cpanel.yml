@@ -10,4 +10,3 @@ deployment:
     - /bin/cp -R src $DEPLOYPATH
     - /bin/cp -R vendor $DEPLOYPATH
     - /bin/cp -R writable $DEPLOYPATH
-    - /bin/cp env $DEPLOYPATH
