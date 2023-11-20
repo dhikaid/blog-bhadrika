@@ -44,8 +44,8 @@ use CodeIgniter\I18n\Time;
                     <?= csrf_field(); ?>
                     <div class="w-full mb-4 border border-gray-200 rounded-lg bg-zinc-50 dark:bg-zinc-700 dark:border-gray-600">
                         <div class="px-4 py-2 bg-white rounded-t-lg dark:bg-zinc-800">
-                            <?php if (isset($validation['comment'])) : ?>
-                                <p id="outlined_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400"><span class="font-medium font-bold">Gagal!</span> <?= $validation['comment']; ?></p>
+                            <?php if (isset($validation['comment']) || isset($validation['uuid'])) : ?>
+                                <p id="outlined_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400"><span class="font-medium font-bold">Gagal!</span> <?= isset($validation['comment'])  ? $validation['comment'] : $validation['uuid'] ?></p>
                             <?php endif; ?>
                             <label for="comment" class="sr-only">Your comment</label>
                             <textarea id="comment" name="comment" rows="4" class="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-zinc-800 focus:ring-0 dark:text-white dark:placeholder-gray-400" placeholder="Write a comment..."> <?= old('comment'); ?></textarea>
@@ -56,7 +56,7 @@ use CodeIgniter\I18n\Time;
                             </button>
 
                             <small class="flex items-center justify-start gap-3">
-                                <input type="hidden" value="<?= $userUUID['uuid']; ?>" name="uuid">
+                                <input type="hidden" value="<?= $userUUID['uuid']; ?>" name="uuid" required>
                                 <img src="<?= base_url('img/avatar/' . $userUUID['gambar']); ?>" class="w-6 h-6 rounded-full" />
                                 <div class="small flex items-center gap-1">
                                     <?= $userUUID['fullname']; ?>
@@ -104,19 +104,26 @@ use CodeIgniter\I18n\Time;
 
                             <article class="p-4 text-sm bg-white rounded-lg dark:bg-zinc-800">
                                 <footer class="flex justify-between items-center mb-2">
-                                    <div class="flex items-center">
+                                    <div class="flex items-center gap-2">
                                         <p class="inline-flex items-center  text-sm text-gray-900 dark:text-white font-semibold"><img class="mr-2 w-6 h-6 rounded-full" src="<?= base_url('img/avatar/' . $comment['gambar']); ?>">
-                                        <div class="small flex items-center gap-1">
-                                            <?= $comment['fullname']; ?>
-                                            <?php if ($comment['userid'] === $blog['penulis']) : ?>
-                                                <button data-popover-target="popover-default" type="button">
-                                                    <svg class="w-3 h-3 text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                                        <path fill="currentColor" d="m18.774 8.245-.892-.893a1.5 1.5 0 0 1-.437-1.052V5.036a2.484 2.484 0 0 0-2.48-2.48H13.7a1.5 1.5 0 0 1-1.052-.438l-.893-.892a2.484 2.484 0 0 0-3.51 0l-.893.892a1.5 1.5 0 0 1-1.052.437H5.036a2.484 2.484 0 0 0-2.48 2.481V6.3a1.5 1.5 0 0 1-.438 1.052l-.892.893a2.484 2.484 0 0 0 0 3.51l.892.893a1.5 1.5 0 0 1 .437 1.052v1.264a2.484 2.484 0 0 0 2.481 2.481H6.3a1.5 1.5 0 0 1 1.052.437l.893.892a2.484 2.484 0 0 0 3.51 0l.893-.892a1.5 1.5 0 0 1 1.052-.437h1.264a2.484 2.484 0 0 0 2.481-2.48V13.7a1.5 1.5 0 0 1 .437-1.052l.892-.893a2.484 2.484 0 0 0 0-3.51Z" />
-                                                        <path fill="#fff" d="M8 13a1 1 0 0 1-.707-.293l-2-2a1 1 0 1 1 1.414-1.414l1.42 1.42 5.318-3.545a1 1 0 0 1 1.11 1.664l-6 4A1 1 0 0 1 8 13Z" />
-                                                    </svg>
-                                                </button>
-                                            <?php endif; ?>
-                                            <p class="text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-02-08" title="February 8th, 2022"><?= Time::parse($comment['created_at'])->toLocalizedString('MMM d, yyyy'); ?></time></p>
+                                        <div class="small ">
+                                            <div class="detail_comment">
+                                                <div class="flex flex items-center gap-1">
+                                                    <p class="line-clamp-1"> <?= $comment['fullname']; ?></p>
+                                                    <?php if ($comment['userid'] === $blog['penulis']) : ?>
+                                                        <button data-popover-target="popover-default" type="button">
+                                                            <svg class="w-3 h-3 text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                                                <path fill="currentColor" d="m18.774 8.245-.892-.893a1.5 1.5 0 0 1-.437-1.052V5.036a2.484 2.484 0 0 0-2.48-2.48H13.7a1.5 1.5 0 0 1-1.052-.438l-.893-.892a2.484 2.484 0 0 0-3.51 0l-.893.892a1.5 1.5 0 0 1-1.052.437H5.036a2.484 2.484 0 0 0-2.48 2.481V6.3a1.5 1.5 0 0 1-.438 1.052l-.892.893a2.484 2.484 0 0 0 0 3.51l.892.893a1.5 1.5 0 0 1 .437 1.052v1.264a2.484 2.484 0 0 0 2.481 2.481H6.3a1.5 1.5 0 0 1 1.052.437l.893.892a2.484 2.484 0 0 0 3.51 0l.893-.892a1.5 1.5 0 0 1 1.052-.437h1.264a2.484 2.484 0 0 0 2.481-2.48V13.7a1.5 1.5 0 0 1 .437-1.052l.892-.893a2.484 2.484 0 0 0 0-3.51Z" />
+                                                                <path fill="#fff" d="M8 13a1 1 0 0 1-.707-.293l-2-2a1 1 0 1 1 1.414-1.414l1.42 1.42 5.318-3.545a1 1 0 0 1 1.11 1.664l-6 4A1 1 0 0 1 8 13Z" />
+                                                            </svg>
+                                                        </button>
+
+                                                    <?php endif; ?>
+                                                </div>
+                                                <p class="text-xs text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-02-08" title="February 8th, 2022"><?= Time::parse($comment['created_at'])->toLocalizedString('MMM d, yyyy'); ?></time></p>
+
+                                            </div>
+
                                         </div>
                                         </p>
                                     </div>
@@ -156,19 +163,27 @@ use CodeIgniter\I18n\Time;
                                 <?php if ($rpl['replyto'] === $comment['hashid']) : ?>
                                     <article class="p-4 mb-3 ml-6 lg:ml-12 text-sm bg-white rounded-lg dark:bg-zinc-800 mt-3">
                                         <footer class="flex justify-between items-center mb-2">
-                                            <div class="flex items-center">
-                                                <p class="inline-flex items-center  text-sm text-gray-900 dark:text-white font-semibold"><img class="mr-2 w-6 h-6 rounded-full" src="<?= base_url('img/avatar/' . $comment['gambar']); ?>">
-                                                <div class="small flex items-center gap-1">
-                                                    <?= $rpl['fullname']; ?>
-                                                    <?php if ($rpl['userid'] === $blog['penulis']) : ?>
-                                                        <button data-popover-target="popover-default" type="button">
-                                                            <svg class="w-3 h-3 text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                                                <path fill="currentColor" d="m18.774 8.245-.892-.893a1.5 1.5 0 0 1-.437-1.052V5.036a2.484 2.484 0 0 0-2.48-2.48H13.7a1.5 1.5 0 0 1-1.052-.438l-.893-.892a2.484 2.484 0 0 0-3.51 0l-.893.892a1.5 1.5 0 0 1-1.052.437H5.036a2.484 2.484 0 0 0-2.48 2.481V6.3a1.5 1.5 0 0 1-.438 1.052l-.892.893a2.484 2.484 0 0 0 0 3.51l.892.893a1.5 1.5 0 0 1 .437 1.052v1.264a2.484 2.484 0 0 0 2.481 2.481H6.3a1.5 1.5 0 0 1 1.052.437l.893.892a2.484 2.484 0 0 0 3.51 0l.893-.892a1.5 1.5 0 0 1 1.052-.437h1.264a2.484 2.484 0 0 0 2.481-2.48V13.7a1.5 1.5 0 0 1 .437-1.052l.892-.893a2.484 2.484 0 0 0 0-3.51Z" />
-                                                                <path fill="#fff" d="M8 13a1 1 0 0 1-.707-.293l-2-2a1 1 0 1 1 1.414-1.414l1.42 1.42 5.318-3.545a1 1 0 0 1 1.11 1.664l-6 4A1 1 0 0 1 8 13Z" />
-                                                            </svg>
-                                                        </button>
-                                                    <?php endif; ?>
-                                                    <p class="text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-02-08" title="February 8th, 2022"><?= Time::parse($rpl['created_at'])->toLocalizedString('MMM d, yyyy'); ?></time></p>
+                                            <div class="flex items-center gap-2">
+                                                <p class="inline-flex items-center  text-sm text-gray-900 dark:text-white font-semibold"><img class="mr-2 w-6 h-6 rounded-full" src="<?= base_url('img/avatar/' . $rpl['gambar']); ?>">
+
+                                                <div class="small ">
+                                                    <div class="detail_comment">
+                                                        <div class="flex flex items-center gap-1">
+                                                            <p class="line-clamp-1"> <?= $rpl['fullname']; ?></p>
+                                                            <?php if ($rpl['userid'] === $blog['penulis']) : ?>
+                                                                <button data-popover-target="popover-default" type="button">
+                                                                    <svg class="w-3 h-3 text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                                                        <path fill="currentColor" d="m18.774 8.245-.892-.893a1.5 1.5 0 0 1-.437-1.052V5.036a2.484 2.484 0 0 0-2.48-2.48H13.7a1.5 1.5 0 0 1-1.052-.438l-.893-.892a2.484 2.484 0 0 0-3.51 0l-.893.892a1.5 1.5 0 0 1-1.052.437H5.036a2.484 2.484 0 0 0-2.48 2.481V6.3a1.5 1.5 0 0 1-.438 1.052l-.892.893a2.484 2.484 0 0 0 0 3.51l.892.893a1.5 1.5 0 0 1 .437 1.052v1.264a2.484 2.484 0 0 0 2.481 2.481H6.3a1.5 1.5 0 0 1 1.052.437l.893.892a2.484 2.484 0 0 0 3.51 0l.893-.892a1.5 1.5 0 0 1 1.052-.437h1.264a2.484 2.484 0 0 0 2.481-2.48V13.7a1.5 1.5 0 0 1 .437-1.052l.892-.893a2.484 2.484 0 0 0 0-3.51Z" />
+                                                                        <path fill="#fff" d="M8 13a1 1 0 0 1-.707-.293l-2-2a1 1 0 1 1 1.414-1.414l1.42 1.42 5.318-3.545a1 1 0 0 1 1.11 1.664l-6 4A1 1 0 0 1 8 13Z" />
+                                                                    </svg>
+                                                                </button>
+
+                                                            <?php endif; ?>
+                                                        </div>
+                                                        <p class="text-xs text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-02-08" title="February 8th, 2022"><?= Time::parse($comment['created_at'])->toLocalizedString('MMM d, yyyy'); ?></time></p>
+
+                                                    </div>
+
                                                 </div>
                                                 </p>
 
@@ -271,8 +286,8 @@ use CodeIgniter\I18n\Time;
             <?= csrf_field(); ?>
     <label for="chat" class="sr-only">Your message</label>
     <div class="mt-3 flex items-center px-3 py-2 rounded-lg bg-zinc-50 dark:bg-zinc-700">
-    <img class="mr-2 w-6 h-6 rounded-full" src="<?= base_url('img/avatar/' . $comment['gambar']); ?>">
-    <input type="hidden" value="<?= $userUUID['uuid']; ?>" name="uuid">
+    <img class="mr-2 w-6 h-6 rounded-full" src="<?= base_url('img/avatar/' . $userUUID['gambar']); ?>">
+    <input type="hidden" value="<?= $userUUID['uuid']; ?>" name="uuid" required>
         <textarea id="chat" rows="1" class="block mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Your message..." name="comment" required></textarea>
             <button type="submit" class="inline-flex justify-center p-2 text-blue-600 rounded-full cursor-pointer hover:bg-blue-100 dark:text-blue-500 dark:hover:bg-zinc-600">
             <svg class="w-5 h-5 rotate-90 rtl:-rotate-90" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
@@ -284,9 +299,14 @@ use CodeIgniter\I18n\Time;
 </form>`;
 
             } else {
-
                 replyBuka.innerHTML = "";
             }
+        }
+    </script>
+<?php else : ?>
+    <script>
+        function replyTo(reply) {
+            location.href = "<?= base_url('/login'); ?>"
         }
     </script>
 <?php endif; ?>

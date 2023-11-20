@@ -43,7 +43,7 @@ class Users extends BaseController
                 ]
             ],
             'username' => [
-                'rules' => 'trim|required|min_length[5]|max_length[12]|alpha_numeric',
+                'rules' => 'trim|required|min_length[5]|max_length[12]|alpha_numeric|is_unique[users.username]',
                 'errors' => [
                     'required' => '{field} harus diisi',
                 ]

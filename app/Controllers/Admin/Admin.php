@@ -99,7 +99,7 @@ class Admin extends BaseController
         helper(['form']);
         if (!$this->validate([
             'fullname' => 'required',
-            'username' => 'trim|required|min_length[5]|max_length[12]|alpha_numeric',
+            'username' => 'trim|required|min_length[5]|max_length[12]|alpha_numeric|is_unique[users.username]',
             'email' => 'required|valid_email|trim',
             'password1' => [
                 'rules' => 'required|trim|min_length[3]|matches[password2]',

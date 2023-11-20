@@ -267,6 +267,9 @@ class Blogs extends BaseController
                     'is_unique' => '{field} sudah ada'
                 ]
             ],
+            'uuid' => [
+                'rules' => 'required|trim|is_not_unique[users.uuid]',
+            ]
 
         ])) {
             $validation = \Config\Services::validation();
@@ -275,6 +278,9 @@ class Blogs extends BaseController
             // return redirect()->to(base_url() . 'blogs/edit/' . $this->request->getVar('slug'))->withInput()->with('validation', $validation);
         }
 
+        if (!session()->get('isLoggedIn')) {
+            return redirect()->to(base_url('/login'));
+        }
 
         $blog = $this->blogsModel->getBlogs($slug);
 

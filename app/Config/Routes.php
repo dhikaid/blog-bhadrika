@@ -7,6 +7,7 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->setAutoRoute(true);
 $routes->get('/', 'Home::index');
+$routes->get('/sitemap.xml', 'Sitemap::index');
 $routes->get('/blogs/create', 'Blogs::create');
 $routes->post('/blogs/save', 'Blogs::save');
 $routes->get('/blogs/(:any)', 'Blogs::detail/$1');

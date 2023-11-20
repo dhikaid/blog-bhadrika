@@ -1723,6 +1723,12 @@ input[type="range"]::-ms-fill-lower {
 .mt-6 {
   margin-top: 1.5rem;
 }
+.line-clamp-1 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
 .block {
   display: block;
 }
@@ -1940,6 +1946,9 @@ input[type="range"]::-ms-fill-lower {
 }
 .gap-1 {
   gap: 0.25rem;
+}
+.gap-2 {
+  gap: 0.5rem;
 }
 .gap-3 {
   gap: 0.75rem;
@@ -2625,10 +2634,6 @@ input[type="range"]::-ms-fill-lower {
 :is(.dark .dark\:bg-gray-800) {
   --tw-bg-opacity: 1;
   background-color: rgb(31 41 55 / var(--tw-bg-opacity));
-}
-:is(.dark .dark\:bg-gray-900) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(17 24 39 / var(--tw-bg-opacity));
 }
 :is(.dark .dark\:bg-indigo-600) {
   --tw-bg-opacity: 1;

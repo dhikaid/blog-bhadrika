@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="font-poppins l">
+<html class="font-poppins l dark">
 
 <head>
     <meta charset="UTF-8" />
@@ -10,6 +10,7 @@
     <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
     <title><?= $tittle; ?> | Bhadrika.</title>
     <link rel="icon" type="image/png" href="<?= base_url('img/assets/favicon.png'); ?>">
+    <meta name="robots" content="max-snippet:20">
     <script>
         // On page load or when changing themes, best to add inline in `head` to avoid FOUC
         if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -17,6 +18,10 @@
         } else {
             document.documentElement.classList.remove('dark')
         }
+        // Menampilkan elemen-elemen setelah tema diterapkan
+        document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.visibility = 'visible';
+        });
     </script>
 </head>
 

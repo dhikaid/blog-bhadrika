@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="font-poppins dark">
+<html class="font-poppins ">
 
 <head>
     <meta charset="UTF-8" />
@@ -22,6 +22,10 @@
         } else {
             document.documentElement.classList.remove('dark')
         }
+        // Menampilkan elemen-elemen setelah tema diterapkan
+        document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.visibility = 'visible';
+        });
     </script>
 </head>
 
