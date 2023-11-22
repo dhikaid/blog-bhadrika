@@ -24,7 +24,13 @@ class Pages extends BaseController
     {
         $data = [
             'tittle' => 'Home',
-            'user' => $this->userLogin
+            'user' => $this->userLogin,
+            'meta' => [
+                'url' => str_replace('.php', '', current_url()),
+                'desc' => "Home",
+                'keyword' => str_replace(' ', ', ', 'Home | Bhadrika'),
+                'author' => 'Bhadrika Aryaputra Hermawan'
+            ]
         ];
         return view('pages/home', $data);
     }
@@ -34,7 +40,13 @@ class Pages extends BaseController
         $data = [
             'tittle' => 'Blog',
             'activeTabs' => 'blog',
-            'user' => $this->userLogin
+            'user' => $this->userLogin,
+            'meta' => [
+                'url' => str_replace('.php', '', current_url()),
+                'desc' => "Blog",
+                'keyword' => str_replace(' ', ', ', 'Blog | Bhadrika'),
+                'author' => 'Bhadrika Aryaputra Hermawan'
+            ]
         ];
         return view('pages/blog', $data);
     }
@@ -44,7 +56,13 @@ class Pages extends BaseController
         $data = [
             'tittle' => 'About Me',
             'activeTabs' => 'about',
-            'user' => $this->userLogin
+            'user' => $this->userLogin,
+            'meta' => [
+                'url' => str_replace('.php', '', current_url()),
+                'desc' => "About",
+                'keyword' => str_replace(' ', ', ', 'About | Bhadrika'),
+                'author' => 'Bhadrika Aryaputra Hermawan'
+            ]
         ];
         return view('pages/about', $data);
     }
@@ -54,6 +72,12 @@ class Pages extends BaseController
         $data = [
             'tittle' => 'Contact',
             'activeTabs' => 'contact',
+            'meta' => [
+                'url' => str_replace('.php', '', current_url()),
+                'desc' => "Contact",
+                'keyword' => str_replace(' ', ', ', 'Contact | Bhadrika'),
+                'author' => 'Bhadrika Aryaputra Hermawan'
+            ],
             'alamat' => [
                 [
                     'tipe' => 'rumah',

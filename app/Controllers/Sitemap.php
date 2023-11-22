@@ -15,6 +15,7 @@ class Sitemap extends BaseController
         $data = [
             "blogs" => $this->blogsModel->getLastBlog(),
         ];
+        header("Content-Type: text/xml; charset=UTF-8");
         return $this->response->setXML(view('sitemap', $data));
     }
 }

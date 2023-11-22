@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+  http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  <url>
+    <loc>https://web.bhadrikais.my.id/</loc>
+    <changefreq>Weekly</changefreq>
+  <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://web.bhadrikais.my.id/blogs</loc>
+    <changefreq>Weekly</changefreq>
+  <priority>0.8</priority>
+  </url>
+  <url>
+  <loc>https://web.bhadrikais.my.id/pages/contact</loc>
+    <changefreq>Weekly</changefreq>
+  <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://web.bhadrikais.my.id/login</loc>
+    <changefreq>Weekly</changefreq>
+  <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://web.bhadrikais.my.id/register</loc>
+    <changefreq>Weekly</changefreq>
+  <priority>0.8</priority>
+  </url>
+</urlset>

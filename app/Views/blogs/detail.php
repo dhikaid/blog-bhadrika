@@ -50,7 +50,7 @@ use CodeIgniter\I18n\Time;
                             <label for="comment" class="sr-only">Your comment</label>
                             <textarea id="comment" name="comment" rows="4" class="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-zinc-800 focus:ring-0 dark:text-white dark:placeholder-gray-400" placeholder="Write a comment..."> <?= old('comment'); ?></textarea>
                         </div>
-                        <div class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
+                        <div class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600 gap-2">
                             <button type="submit" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
                                 Post comment
                             </button>
@@ -59,7 +59,7 @@ use CodeIgniter\I18n\Time;
                                 <input type="hidden" value="<?= $userUUID['uuid']; ?>" name="uuid" required>
                                 <img src="<?= base_url('img/avatar/' . $userUUID['gambar']); ?>" class="w-6 h-6 rounded-full" />
                                 <div class="small flex items-center gap-1">
-                                    <?= $userUUID['fullname']; ?>
+                                    <p class="line-clamp-1"><?= $userUUID['fullname']; ?></p>
                                     <?php if ($userUUID['uuid'] === $blog['penulis']) : ?>
                                         <button data-popover-target="popover-default" type="button">
                                             <svg class="w-3 h-3 text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">

@@ -52,6 +52,12 @@ class Blogs extends BaseController
             'blogs' => $blogs->paginate(6, 'blogs'),
             'pager' => $this->blogsModel->pager,
             'user' => $this->userLogin,
+            'meta' => [
+                'url' => str_replace('.php', '', base_url('/blogs')),
+                'desc' => "Hai",
+                'keyword' => str_replace(' ', ', ', 'Blogs | Bhadrika'),
+                'author' => 'Bhadrika Aryaputra Hermawan',
+            ]
         ];
 
         // dd($user);
@@ -88,6 +94,13 @@ class Blogs extends BaseController
             'validation' => session()->getFlashdata('validation'),
             'comments' => $comment,
             'user' => $this->userLogin,
+            'meta' => [
+                'url' => str_replace('.php', '', base_url('/blogs/' . $blogs['slug'])),
+                'desc' => word_limiter(esc(strip_tags($blogs['text'])), 30),
+                'keyword' => str_replace(' ', ', ', '' . $blogs['judul'] . ' | Bhadrika'),
+                'author' => $blogs['penulis'],
+
+            ]
         ];
 
         // jika tidak ada komik
